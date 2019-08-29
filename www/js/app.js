@@ -1,6 +1,6 @@
 // Ionic Starter App
 
-var BASE_URL = "http://kcosta.cf";
+var BASE_URL = "http://app.jpa.rmater.org.br";
 
 angular.module('PortasAbertas', ['ionic', 'portasabertas.controllers', 'portasabertas.services','ngCordova'])
 
