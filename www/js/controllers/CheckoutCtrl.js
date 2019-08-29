@@ -12,14 +12,16 @@ controllers.controller('CheckoutCtrl', function($scope, $rootScope, $state, $cor
   			$scope.cardNumber = parseInt($scope.cardNumber.slice(0,-1));
   			$user = $localstorage.getObject('user');
 
+          var loading = $ionicLoading.show({
+            template: 'Finalizando a compra',
+            duration: 3000
+          });
+
+
   			Card.consult(parseInt($scope.cardNumber),$user.data.token).then(function(response){
   				var cart = $localstorage.getObject('cart'); 
 
-             var loading = $ionicLoading.show({
-              template: 'Finalizando a compra',
-              duration: 3000
-            });
-
+           
   				if( parseInt(response.data.creditos) < cart.total )
   				{
             loading.hide();
@@ -37,16 +39,11 @@ controllers.controller('CheckoutCtrl', function($scope, $rootScope, $state, $cor
   					$user = $localstorage.getObject('user');
 
   					Checkout.pay($user.data.token, $scope.cardNumber, cart).then(function(response){
-  						if(!angular.isUndefined(response.data.status)){
-
-  							if(response.data.status == true){
-  								$state.go('consult');
-  							}
-
+  						if(!angular.isUndefined(response.data.status))
+              {
+                $state.go('response',{'status': response.data.status});
   						}
   					});
-
-  					loading.hide();
   				}
   			});
   		}

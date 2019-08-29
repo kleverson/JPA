@@ -77,19 +77,8 @@ angular.module('PortasAbertas', ['ionic', 'portasabertas.controllers', 'portasab
     }
   })
 
-  // .state('tab.response',{
-  //   parent:'tab',
-  //   url:'/response',
-  //   views:{
-  //     'tab-response':{
-  //       templateUrl:'templates/response.html',
-  //       controller:'ResponseCtrl'
-  //     }
-  //   }
-  // })
-
   .state('response', {
-    url: '/response',
+    url: '/response/:status',
     templateUrl: 'templates/response.html',
     controller: 'ResponseCtrl'
   })

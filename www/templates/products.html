@@ -10,8 +10,8 @@
       
       <select class="form-control" 
           ng-change="update()"
-          ng-options="option.nome for option in stands track by option.id_barraca"
-          ng-model="activeStand"></select>
+          ng-options="option.nome for option in stands.values[0] track by option.id_barraca"
+          ng-model="stands.selected"></select>
     </label>
 
     <div class="card" ng-repeat="item in products">

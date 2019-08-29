@@ -4,7 +4,11 @@ controllers.controller('ProductsCtrl', function($scope, $rootScope, $state, User
 	$scope.products = [];
 	$scope.qtd = 0;
 	$scope.total = 0;
-	$scope.stands = {};
+	$scope.standId = 0;
+	$scope.stands = {
+		selected:null,
+		values:[]
+	};
 
 	$scope.showLoading = function() {
       $ionicLoading.show({
@@ -17,10 +21,12 @@ controllers.controller('ProductsCtrl', function($scope, $rootScope, $state, User
    	};
 
 	$scope.$on('$ionicView.beforeEnter', function(){
-		$scope.getData();
+		$user = $localstorage.getObject('user');
+
+		$scope.getData($user.data.stand.id_barraca);
 	});
 
-	$scope.getData = function(){
+	$scope.getData = function(standId){
 		$user = $localstorage.getObject('user');
 		$scope.showLoading();
 
@@ -35,24 +41,21 @@ controllers.controller('ProductsCtrl', function($scope, $rootScope, $state, User
 					if(parseInt($user.data.profile) == 3)
 					{	
 						var stands = $localstorage.getObject('stands');
-
-						console.log(stands.length);
 						if(stands.length > 0){
-							$scope.stands = stands;
+							$scope.stands.values.push(stands)
 						}else{
 							Product.getAll($user.data.token).then(function(response){
 								if(!angular.isUndefined(response.data)){
 									$localstorage.setObject('stands', response.data);
+
+									$scope.stands.values.push(response.data);
 								}
 							})
 						}
 					}
 
-					console.log($scope.standId);
-					// $scope.standId = ($scope.standId > 0) ? $scope.standId : $user.data.stand.id_barraca;
 
-
-					Product.getById($user.data.token,$user.data.stand.id_barraca).then(function(response){
+					Product.getById($user.data.token,standId).then(function(response){
 						
 						if(!angular.isUndefined(response.data))
 						{
@@ -78,7 +81,7 @@ controllers.controller('ProductsCtrl', function($scope, $rootScope, $state, User
 	}
 
 	$scope.update = function(){
-		console.log($scope.activeStand);
+		$scope.getData($scope.stands.selected.id_barraca);
 	}
 
 
