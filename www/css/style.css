@@ -1,1 +1,32 @@
 /* Empty. Add your own CSS if you like */
+
+    .red:before {
+    color: red;
+    }
+
+    .green:before {
+    color: green;
+    }
+
+    .flex_row {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: row; 
+    flex-direction: row;
+    }
+
+    i.ion-checkmark-circled,
+    i.ion-close-circled{
+      font-size: 90px;
+      display: block;
+      padding:15px;
+      text-align: center;
+    }
+
+    i.ion-checkmark-circled{
+        color:green;
+    }
+
+    i.ion-close-circled{
+        color:red;
+    }

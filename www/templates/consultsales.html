@@ -1,0 +1,19 @@
+<ion-view view-title="Consultar compras">
+  
+  <ion-content>
+	<div class="list">
+	  <div class="item item-button-right" ng-repeat="item in list">
+	    <p>Barraca: {{item.nome}}</p>
+	    <p>Produto: {{item.descricao}}</p>
+	    <p>Login vendedor: {{item.login}}</p>
+	    <p>R$ {{item.valor}}</p>
+
+	    <button class="button button-assertive" ng-click="removeSale(item);">
+	      <i class="ion-trash-a"></i>
+	    </button>
+	  </div>
+	</div>
+
+  </ion-content>
+
+</ion-view>

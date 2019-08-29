@@ -1,14 +1,13 @@
 // Ionic Starter App
 
-// angular.module is a global place for creating, registering and retrieving Angular modules
-// 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
-// the 2nd parameter is an array of 'requires'
-// 'starter.services' is found in services.js
-// 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
+var BASE_URL = "http://kcosta.cf";
 
-.run(function($ionicPlatform) {
+angular.module('PortasAbertas', ['ionic', 'portasabertas.controllers', 'portasabertas.services','ngCordova'])
+
+.run(function($ionicPlatform, $rootScope, $localstorage) {
   $ionicPlatform.ready(function() {
+
+    $rootScope.userData = {};
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs).
     // The reason we default this to hidden is that native apps don't usually show an accessory bar, at
@@ -20,23 +19,34 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     }
 
     if (window.StatusBar) {
-      // Set the statusbar to use the default style, tweak this to
-      // remove the status bar on iOS or change it to use white instead of dark colors.
       StatusBar.styleDefault();
     }
+
+    function userdata(){
+      $user = $localstorage.getObject('user');
+      if(!angular.isUndefined($user)){
+        $rootScope.userData = $user;
+      }
+    }
+
+    userdata();
+
   });
 })
 
-.config(function($stateProvider, $urlRouterProvider) {
+.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
+  $ionicConfigProvider.tabs.position('bottom'); 
 
-  // Ionic uses AngularUI Router which uses the concept of states
-  // Learn more here: https://github.com/angular-ui/ui-router
-  // Set up the various states which the app can be in.
-  // Each state's controller can be found in controllers.js
   $stateProvider
+  
+  .state('login',{
+    url:'/login',
+    templateUrl:'templates/login.html',
+    controller:'UserCtrl'
+  })
 
   // setup an abstract state for the tabs directive
-    .state('tab', {
+  .state('tab', {
     url: '/tab',
     abstract: true,
     templateUrl: 'templates/tabs.html'
@@ -44,46 +54,57 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
   // Each tab has its own nav history stack:
 
-  .state('tab.dash', {
-    url: '/dash',
+  .state('tab.products', {
+    parent:'tab',
+    url: '/products',
     views: {
-      'tab-dash': {
-        templateUrl: 'templates/tab-dash.html',
-        controller: 'DashCtrl'
+      'tab-products': {
+        templateUrl: 'templates/products.html',
+        controller: 'ProductsCtrl'
       }
     }
   })
 
-  .state('tab.chats', {
-      url: '/chats',
-      views: {
-        'tab-chats': {
-          templateUrl: 'templates/tab-chats.html',
-          controller: 'ChatsCtrl'
-        }
-      }
-    })
-    .state('tab.chat-detail', {
-      url: '/chats/:chatId',
-      views: {
-        'tab-chats': {
-          templateUrl: 'templates/chat-detail.html',
-          controller: 'ChatDetailCtrl'
-        }
-      }
-    })
 
-  .state('tab.account', {
-    url: '/account',
-    views: {
-      'tab-account': {
-        templateUrl: 'templates/tab-account.html',
-        controller: 'AccountCtrl'
+  .state('tab.consult',{
+    parent:'tab',
+    url:'/consult',
+    views:{
+      'tab-card':{
+        templateUrl:'templates/consult.html',
+        controller:'ConsultCtrl'
       }
     }
-  });
+  })
+
+  // .state('tab.response',{
+  //   parent:'tab',
+  //   url:'/response',
+  //   views:{
+  //     'tab-response':{
+  //       templateUrl:'templates/response.html',
+  //       controller:'ResponseCtrl'
+  //     }
+  //   }
+  // })
+
+  .state('response', {
+    url: '/response',
+    templateUrl: 'templates/response.html',
+    controller: 'ResponseCtrl'
+  })
+
+  .state('checkout', {
+    url: '/checkout',
+    templateUrl: 'templates/checkout.html',
+    controller: 'CheckoutCtrl'
+  })
+
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tab/dash');
+  $urlRouterProvider.otherwise('/login');
 
 });
+
+var controllers = angular.module('portasabertas.controllers', []);
+var services = angular.module('portasabertas.services', []);

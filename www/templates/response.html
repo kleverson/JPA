@@ -1,0 +1,29 @@
+<ion-view hide-nav-bar="true">
+  
+  <ion-content>
+	
+	<div class="success text-center" ng-if="response == true">
+		<i class="ion-checkmark-circled"></i>
+		<h2>Pagamento</h2>
+
+		<p>Pagamento feito com sucesso!</p>
+
+		<a class="button" href="#/tab/products">Produtos</a>
+	</div>
+
+
+	<div class="error text-center" ng-if="response == false">
+		<i class="ion-close-circled"></i>
+
+		<h2>Pagamento</h2>
+
+		<p>Houve um erro, por favor tente novamente!</p>
+		
+		<a class="button" href="#/tab/products">Produtos</a>
+
+	</div>
+	
+
+  </ion-content>
+
+</ion-view>
