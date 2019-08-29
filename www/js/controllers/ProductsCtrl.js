@@ -38,7 +38,7 @@ controllers.controller('ProductsCtrl', function($scope, $rootScope, $state, User
 				{
 					$scope.title = $user.data.stand.nome;
 
-					if(parseInt($user.data.profile) == 3)
+					if(parseInt($user.data.profile) == 1)
 					{	
 						var stands = $localstorage.getObject('stands');
 						if(stands.length > 0){
@@ -78,6 +78,10 @@ controllers.controller('ProductsCtrl', function($scope, $rootScope, $state, User
 				$state.go('login');
 			}
 		},2500)
+	}
+
+	$scope.getStands = function(){
+
 	}
 
 	$scope.update = function(){
