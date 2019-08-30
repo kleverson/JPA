@@ -8,7 +8,7 @@
     		display: block;
 	    	position: static;
 	    	max-width: initial;
-	    	text-align: center;
+	    	text-align: left;
 		}
 		.form-control{
 			position: static;
@@ -16,9 +16,10 @@
     		width: auto;
     		text-align: center;
     		display: block;
-    		padding: 0;
-    		margin: auto;
-    		direction: initial;
+    		padding: 0px 0px 5px 0;
+    		margin: -5px auto auto auto;
+    		direction: inherit;
+    		width: -webkit-fill-available;
     		option{
     			direction: initial;
     		}
