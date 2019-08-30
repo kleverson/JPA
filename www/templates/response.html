@@ -3,23 +3,26 @@
   <ion-content>
 	
 	<div class="success text-center" ng-if="response == true">
-		<i class="ion-checkmark-circled"></i>
+		<br /><br />
+		<i class="ion-checkmark-circled colorBalance"></i>
 		<h2>Pagamento</h2>
 
 		<p>Pagamento feito com sucesso!</p>
+		<br />
 
-		<a class="button" href="#/tab/products">Produtos</a>
+		<a class="button button-balanced" href="#/tab/products">Outros Produtos</a>
 	</div>
 
 
 	<div class="error text-center" ng-if="response == false">
-		<i class="ion-close-circled"></i>
+		<br /><br />
+		<i class="ion-close-circled colorAssertive"></i>
 
 		<h2>Pagamento</h2>
-
 		<p>Houve um erro, por favor tente novamente!</p>
+		<br />
 		
-		<a class="button" href="#/tab/products">Produtos</a>
+		<a class="button button-assertive" href="#/tab/products">Voltar aos Produtos</a>
 
 	</div>
 	
