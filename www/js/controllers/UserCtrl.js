@@ -1,4 +1,4 @@
-controllers.controller('UserCtrl', function($scope, $state, $rootScope,  User, Product, $timeout, $ionicLoading,  $http, $localstorage) {
+controllers.controller('UserCtrl', function($scope, $state, $rootScope,  User, Product, $timeout, $ionicLoading, $ionicPopup,  $http, $localstorage) {
 
   $scope.data = {
   	username:'',
@@ -10,16 +10,23 @@ controllers.controller('UserCtrl', function($scope, $state, $rootScope,  User, P
       template: '<ion-spinner icon="lines" class="spinner-energized"></ion-spinner> <br/> Autenticando'
     });
   	User.login($scope.data).then(function(response){
-
       $timeout(function(){
           if(!angular.isUndefined(response.data))
           {
-            $localstorage.setObject('user', response.data);
-            $scope.getStands(response.data);
-            
-            $timeout(function(){
-              $state.go('tab.products');
-            },1000)
+            if(response.data.data == false){
+               var alertPopup = $ionicPopup.alert({
+                 title: 'Erro',
+                 template: 'Usuário e/ou senha incorretos'
+               });
+            }else{
+              $localstorage.setObject('user', response.data);
+              $scope.getStands(response.data);
+              
+              $timeout(function(){
+                $ionicLoading.hide();
+                $state.go('tab.products');
+              },1000)
+            }
           }
       },2000)
 
