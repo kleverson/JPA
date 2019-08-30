@@ -4,8 +4,7 @@ Projeto desenvolvido para uso na Jornada de Portas Abertas 2019, do seminário R
 
 ## Tecnologias aplicadas
 
-- Ionic v1;
-- 
+- Ionic v1
 
 ## Instalação
 
