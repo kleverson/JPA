@@ -34,25 +34,27 @@ angular.module('PortasAbertas', ['ionic', 'portasabertas.controllers', 'portasab
     $rootScope.logout = function(){
       $localstorage.removeObject('user');
 
+      alert('xpto');
+
       $state.go('login');
     }
-      var permissions = cordova.plugins.permissions;
+    //   var permissions = cordova.plugins.permissions;
 
-       var listPermissions = [
-        permissions.WRITE_EXTERNAL_STORAGE,
-        permissions.READ_EXTERNAL_STORAGE,
-        permissions.CAMERA
-      ];
+    //    var listPermissions = [
+    //     permissions.WRITE_EXTERNAL_STORAGE,
+    //     permissions.READ_EXTERNAL_STORAGE,
+    //     permissions.CAMERA
+    //   ];
 
-      permissions.requestPermissions(listPermissions, success, error);
+    //   permissions.requestPermissions(listPermissions, success, error);
    
-      function error() {
-        alert('Camera permission is not turned on');
-      }
+    //   function error() {
+    //     alert('Camera permission is not turned on');
+    //   }
        
-      function success( status ) {
-        if( !status.hasPermission ) error();
-    }
+    //   function success( status ) {
+    //     if( !status.hasPermission ) error();
+    // }
 
     userdata();
 
