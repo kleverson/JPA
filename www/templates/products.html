@@ -1,40 +1,32 @@
 <ion-view view-title="{{title}}">
- <ion-content>
-   <div class="list">
-     <label class="item item-input item-select" ng-if="user.data.profile == '1'">
-      <h2 class="input-label">
-        Escolha a barraca
-      </h2>
-      
+  <ion-content>
+    <div class="list">
+      <label class="item item-input item-select listBarraca" ng-if="user.data.profile == '1'">
+        <h2 class="input-label">Escolha a barraca</h2>      
 
-      <select class="form-control" 
+        <select class="form-control" 
           ng-change="update()"
           ng-options="option.nome for option in stands.values[0] track by option.id_barraca"
           ng-model="stands.selected"></select>
-    </label>
+      </label>
 
-    <a href="#" ng-click="logout()" class="button">sair</a>
+      <a href="#" ng-click="logout()" class="button">sair</a>
 
-    <div class="card" ng-repeat="item in products">
-      <div class="item item-text-wrap">
-        {{item.descricao}} ({{item.estoque}})
-        <p>R$ {{item.valor}}<p>
-
-          <hr>
+      <div class="card cardProd" ng-repeat="item in products">
+        <div class="item item-text-wrap">
+          <h3>{{item.descricao}}</h3>
+          <p class="pEstoque"><strong>{{item.estoque}}</strong> em estoque</p>         
+          <p class="right"><small>R$</small> {{item.valor}}<small>,00</small><p>
+          <hr />
           <div class="flex_row">
             <button class="button icon ion-minus-circled red" ng-click="rem(item)"></button>
-
             <button class="button"><p> {{item.qtd}} </p></button>
-
             <button class="button icon ion-plus-circled green" ng-click="add(item)"></button>
           </div>
-
-          <div class="text-right">
-           R$ {{item.subtotal}}
-         </div>
-       </div>
-     </div>
-   </div>
+          <div class="text-right">R$ {{item.subtotal}}</div>
+        </div>
+      </div>
+    </div>
 
     <div class="item item-text-wrap">
       <p class="col">Total R$ {{total}}</p>

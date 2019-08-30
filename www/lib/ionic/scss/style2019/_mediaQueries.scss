@@ -1,0 +1,39 @@
+@media (max-width: 362px) {
+	.overflowauto{
+		.LogoJPA{
+			img{
+				max-width: 174px;
+			}	
+		}
+		.ContentLogin{
+			 h1{
+    			margin-top: 16px;
+			 }
+			 h2{
+			 	font-size: 15px;
+			 }
+			 .list-inset{
+			 	margin-bottom: 15px;
+			 }
+		}
+	}  
+}
+
+@media (max-width: 344px) {
+	.overflowauto{
+		.LogoJPA{
+			img{
+				max-width: 150px;
+			}	
+		}
+		.ContentLogin{
+			 h1{
+    			margin-top: 0px;
+    			font-size: 30px;
+			 }
+			 h2{
+			 	font-size: 15px;
+			 }
+		}
+	}  
+}

@@ -1,0 +1,16 @@
+.nav-bar-block .bar-header{
+	height: 50px;
+}
+.tabMenuInferior{
+	margin-right: 2px;
+	.tabs{
+		height: 54px;
+		.tab-item{
+			line-height: 5px;
+			margin-top: 7px;
+			.icon{
+				font-size: 27px;
+			}
+		}
+	}	
+}
