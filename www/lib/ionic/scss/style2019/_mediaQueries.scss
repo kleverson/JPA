@@ -1,3 +1,31 @@
+@media (max-width: 366px) {
+	.listBarraca{
+		white-space: normal;
+		display: block;
+		padding: 2px 17px;
+		.input-label{
+			width: 100%;
+    		display: block;
+	    	position: static;
+	    	max-width: initial;
+	    	text-align: center;
+		}
+		.form-control{
+			position: static;
+    		max-width: initial;
+    		width: auto;
+    		text-align: center;
+    		display: block;
+    		padding: 0;
+    		margin: auto;
+    		direction: initial;
+    		option{
+    			direction: initial;
+    		}
+		}
+	}
+}
+
 @media (max-width: 362px) {
 	.overflowauto{
 		.LogoJPA{

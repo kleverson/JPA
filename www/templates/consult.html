@@ -1,13 +1,15 @@
 <ion-view view-title="Consultar saldo">
   
-  <ion-content>
-  	<div class="card">
-	  <div class="item item-text-wrap">
-	  	<h2>{{consult.descricao}}</h2>
-	  	<span>Cartão: {{consult.id_cartao}}</span>
-	    <p><strong>R$ {{consult.creditos}}</strong></p>
-	  </div>
-	</div>
+	<ion-content>
+		<div class="card CardConsult">
+			<div class="item item-avatar">
+    			<img src="img/cardConsult.png">
+    			<h2>{{consult.descricao}}</h2>
+    			<span>Cartão: {{consult.id_cartao}}</span>
+  			</div>
+  			<div class="item item-divider">		  		
+		    	<p><strong>Valor Atualizado: <span>R$ {{consult.creditos}}</span></strong></p>
+		  	</div>
+		</div>
   </ion-content>
-
 </ion-view>

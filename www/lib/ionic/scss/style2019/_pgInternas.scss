@@ -72,6 +72,7 @@
     p{
         font-size: 20px;
         font-weight: 500;
+        color: $assertive;
         small{
             font-size: 13px;
             font-weight: 300;
@@ -83,5 +84,52 @@
         right: -1px;
         top: 0px;
         padding: 0 25px;
+    }
+}
+
+.CardConsult{
+    border-bottom-right-radius: 5px !important;
+    border-bottom-left-radius: 5px  !important;
+    border-top-left-radius: 5px !important;
+    border-top-right-radius: 5px !important;
+    .item-avatar{
+        padding-left: 113px;
+        min-height: 106px;
+        h2{
+            font-size: 24px;
+            font-weight: 200;
+            color: $assertive;
+        }
+        span{
+            font-size: 14px;
+            color: $borderInput;
+        }
+        img{
+            max-width: 85px;
+            max-height: 85px;
+            top: 9px;
+            left: 13px;
+        }
+    }
+    .item-divider{
+        span{
+            color: $assertive;
+        }
+    }
+}
+.success{
+    h2{
+        color: $positive;
+    }
+    .colorBalance{
+        color: $balanced !important;
+    }
+}
+.error{
+    h2{
+        color: $positive;
+    }
+    .colorAssertive{
+        color: $assertive !important;
     }
 }
