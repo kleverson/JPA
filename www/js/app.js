@@ -33,9 +33,6 @@ angular.module('PortasAbertas', ['ionic', 'portasabertas.controllers', 'portasab
 
     $rootScope.logout = function(){
       $localstorage.removeObject('user');
-
-      alert('xpto');
-
       $state.go('login');
     }
     //   var permissions = cordova.plugins.permissions;
