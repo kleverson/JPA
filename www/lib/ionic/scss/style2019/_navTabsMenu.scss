@@ -1,6 +1,16 @@
 .nav-bar-block .bar-header{
 	height: 50px;
 }
+.btnLogoff{
+	position: absolute;
+	top: 0;
+    right: 0;
+    font-size: 0 !important;
+}
+.btnLogoff.button.button-icon:before{
+	font-size: 25px;
+	margin-top: 5px;
+}
 .tabMenuInferior{
 	margin-right: 2px;
 	.tabs{
@@ -10,6 +20,7 @@
 			margin-top: 7px;
 			.icon{
 				font-size: 27px;
+				margin-top: 5px;
 			}
 		}
 	}	

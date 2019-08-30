@@ -4,12 +4,17 @@
 .scroll{
 	padding-left: 16px;
 	padding-right: 16px;
+    padding-bottom: 45px;    
+}
+.spaco{
+    height: 40px;
 }
 .cardProd{
 	border-bottom-right-radius: 5px !important;
     border-bottom-left-radius: 5px  !important;
     border-top-left-radius: 5px !important;
     border-top-right-radius: 5px !important;
+    margin: 11px 10px;
     h3{
     	font-weight: 400;
     	font-size: 16px;
@@ -37,5 +42,46 @@
     	border-bottom: 1px solid #f3f3f3;
     	margin-left: -16px;
     	margin-right: -16px;
+    }
+    .flex_row{
+        float: left;
+        margin-top: -8px;
+        background-color: #f8f8f8;
+        padding: 6px 20px 6px 21px;
+        margin-left: -20px;
+        button{
+            padding: 0;
+            line-height:0;
+            min-height: auto;
+            min-width: 30px;
+            &:before{line-height: 28px;}
+        }
+        .itemqtd{
+            padding-left: 29px;
+            padding-right: 29px;
+        }
+    }
+}
+.itemSelecionado{
+    position: fixed;
+    border: 0px solid $light; 
+    bottom: 54px;
+    left: 0;
+    width: 100%;
+    padding: 5px 10px 5px 17px;
+    p{
+        font-size: 20px;
+        font-weight: 500;
+        small{
+            font-size: 13px;
+            font-weight: 300;
+        }
+    }
+    button{
+        font-size: 14px;
+        position: absolute;
+        right: -1px;
+        top: 0px;
+        padding: 0 25px;
     }
 }

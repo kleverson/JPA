@@ -1,4 +1,5 @@
-<ion-view view-title="{{title}}">
+
+<ion-view view-title="{{title}} <a href='#' ng-click='logout()' class='button button-icon icon ion-log-out btnLogoff'>Fazer Logoff</a>">
   <ion-content>
     <div class="list">
       <label class="item item-input item-select listBarraca" ng-if="user.data.profile == '1'">
@@ -10,28 +11,28 @@
           ng-model="stands.selected"></select>
       </label>
 
-      <a href="#" ng-click="logout()" class="button">sair</a>
-
       <div class="card cardProd" ng-repeat="item in products">
         <div class="item item-text-wrap">
           <h3>{{item.descricao}}</h3>
           <p class="pEstoque"><strong>{{item.estoque}}</strong> em estoque</p>         
-          <p class="right"><small>R$</small> {{item.valor}}<small>,00</small><p>
+          <p class="right"><small>R$</small> {{item.valor}}<small></small><p>
           <hr />
           <div class="flex_row">
-            <button class="button icon ion-minus-circled red" ng-click="rem(item)"></button>
-            <button class="button"><p> {{item.qtd}} </p></button>
-            <button class="button icon ion-plus-circled green" ng-click="add(item)"></button>
+            <button class="button icon ion-plus-circled button-balanced" ng-click="add(item)"></button>            
+            <button class="button itemqtd"><p> {{item.qtd}} </p></button>
+            <button class="button icon ion-minus-circled button-assertive" ng-click="rem(item)"></button>            
           </div>
           <div class="text-right">R$ {{item.subtotal}}</div>
         </div>
       </div>
     </div>
 
-    <div class="item item-text-wrap">
-      <p class="col">Total R$ {{total}}</p>
-      <button class="button button-positive text-right col" ng-click="confirmCheckout();">Fechar</button>
-    </div>
+    <div class="spaco">&nbsp;</div>
  </ion-content>
+
+ <div class="item item-text-wrap itemSelecionado">
+      <p class="col"><small>Valor Total R$</small>  {{total}}</p>
+      <button class="button icon ion-ios-checkmark-outline button-balanced" ng-click="confirmCheckout();">&nbsp;&nbsp; Fechar</button>
+  </div>
 
 </ion-view>
