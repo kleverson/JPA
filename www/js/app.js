@@ -4,7 +4,7 @@ var BASE_URL = "http://app.jpa.rmater.org.br";
 
 angular.module('PortasAbertas', ['ionic', 'portasabertas.controllers', 'portasabertas.services','ngCordova'])
 
-.run(function($ionicPlatform, $rootScope, $localstorage) {
+.run(function($ionicPlatform, $rootScope, $localstorage, $state) {
   $ionicPlatform.ready(function() {
 
     $rootScope.userData = {};
@@ -24,9 +24,34 @@ angular.module('PortasAbertas', ['ionic', 'portasabertas.controllers', 'portasab
 
     function userdata(){
       $user = $localstorage.getObject('user');
-      if(!angular.isUndefined($user)){
+      if(!angular.isUndefined($user.data)){
         $rootScope.userData = $user;
+      }else{
+        $state.go('login');
       }
+    }
+
+    $rootScope.logout = function(){
+      $localstorage.removeObject('user');
+
+      $state.go('login');
+    }
+      var permissions = cordova.plugins.permissions;
+
+       var listPermissions = [
+        permissions.WRITE_EXTERNAL_STORAGE,
+        permissions.READ_EXTERNAL_STORAGE,
+        permissions.CAMERA
+      ];
+
+      permissions.requestPermissions(listPermissions, success, error);
+   
+      function error() {
+        alert('Camera permission is not turned on');
+      }
+       
+      function success( status ) {
+        if( !status.hasPermission ) error();
     }
 
     userdata();

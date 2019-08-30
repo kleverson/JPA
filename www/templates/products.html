@@ -1,18 +1,19 @@
 <ion-view view-title="{{title}}">
  <ion-content>
-
-
    <div class="list">
-     <label class="item item-input item-select" ng-if="userData.data.profile == '1'">
+     <label class="item item-input item-select" ng-if="user.data.profile == '1'">
       <h2 class="input-label">
         Escolha a barraca
       </h2>
       
+
       <select class="form-control" 
           ng-change="update()"
           ng-options="option.nome for option in stands.values[0] track by option.id_barraca"
           ng-model="stands.selected"></select>
     </label>
+
+    <a href="#" ng-click="logout()" class="button">sair</a>
 
     <div class="card" ng-repeat="item in products">
       <div class="item item-text-wrap">

@@ -10,9 +10,15 @@ controllers.controller('ProductsCtrl', function($scope, $rootScope, $state, User
 		values:[]
 	};
 
-	$scope.showLoading = function() {
+
+
+	$scope.showLoading = function(name) {
+	  $timeout(function(){
+	  	$scope.title = name;
+	  }, 500);
+	  
       $ionicLoading.show({
-         template: 'Buscando produtos...'
+         template: 'Buscando produtos de ' +name
       });
    	};
 
@@ -20,42 +26,20 @@ controllers.controller('ProductsCtrl', function($scope, $rootScope, $state, User
       $ionicLoading.hide();
    	};
 
-	$scope.$on('$ionicView.beforeEnter', function(){
-		$user = $localstorage.getObject('user');
 
-		$scope.getData($user.data.stand.id_barraca);
-	});
 
-	$scope.getData = function(standId){
-		$user = $localstorage.getObject('user');
-		$scope.showLoading();
+	$scope.getData = function(standId, name){
+		$scope.showLoading(name);
+
+		$scope.total = 0;
 
 		$timeout(function(){
 			$scope.products = [];
-			if(!angular.isUndefined($user.data))
+			if(!angular.isUndefined($scope.user.data))
 			{
-				if(!angular.isUndefined($user.data.token))
+				if(!angular.isUndefined($scope.user.data.token))
 				{
-					$scope.title = $user.data.stand.nome;
-
-					if(parseInt($user.data.profile) == 1)
-					{	
-						var stands = $localstorage.getObject('stands');
-						if(stands.length > 0){
-							$scope.stands.values.push(stands)
-						}else{
-							Product.getAll($user.data.token).then(function(response){
-								if(!angular.isUndefined(response.data)){
-									$localstorage.setObject('stands', response.data);
-
-									$scope.stands.values.push(response.data);
-								}
-							})
-						}
-					}
-
-
-					Product.getById($user.data.token,standId).then(function(response){
+					Product.getById($scope.user.data.token,standId).then(function(response){
 						
 						if(!angular.isUndefined(response.data))
 						{
@@ -64,7 +48,6 @@ controllers.controller('ProductsCtrl', function($scope, $rootScope, $state, User
 								responsedata[item].qtd = 0;
 								responsedata[item].subtotal = 0;
 								$scope.products.push(responsedata[item]);
-
 							}
 
 							$scope.hideLoading();
@@ -73,6 +56,8 @@ controllers.controller('ProductsCtrl', function($scope, $rootScope, $state, User
 						}
 		
 					})
+
+					$scope.getStands();
 				}
 			}else{
 				$state.go('login');
@@ -81,11 +66,13 @@ controllers.controller('ProductsCtrl', function($scope, $rootScope, $state, User
 	}
 
 	$scope.getStands = function(){
-
+		var stands = $localstorage.getObject('stands');
+			$scope.stands.values.push(stands);
+		
 	}
 
 	$scope.update = function(){
-		$scope.getData($scope.stands.selected.id_barraca);
+		$scope.getData($scope.stands.selected.id_barraca,$scope.stands.selected.nome);
 	}
 
 
@@ -160,4 +147,15 @@ controllers.controller('ProductsCtrl', function($scope, $rootScope, $state, User
 		$state.go('checkout');
 
 	}
+
+	$scope.$on('$ionicView.beforeEnter', function()
+	{
+		$scope.user = $localstorage.getObject('user');
+		
+		if(parseInt($scope.user.data.profile) == 1){
+			$scope.getStands();
+		}else{
+			$scope.getData($scope.user.data.stand.id_barraca, $scope.user.data.stand.nome);
+		}
+	});
 })
