@@ -1,21 +1,11 @@
 
 // PADRÃO DE VARIAVEIS DO IONIC
 @import
-  "../variables"
+  "../variables",
+  "texts",
+  "forms",
+  "navTabsMenu",
+  "pgInternas",
+  "login",
+  "mediaQueries"
 ;
-
-.LogoJPA{	
-	text-align: center;
-	background-color: $positive;
-	img{
-		max-width: 200px;
-		width: 100%;
-		display: block;
-		margin-right: auto;
-		margin-left: auto;
-	}
-}
-h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
-	font-weight: 200;
-	text-transform: uppercase;
-}

@@ -1,0 +1,71 @@
+.item-input{
+	border-bottom-right-radius: 5px !important;
+    border-bottom-left-radius: 5px  !important;
+    border-top-left-radius: 5px !important;
+    border-top-right-radius: 5px !important;
+    border-color: $borderInput;
+    padding: 0;
+	textarea, 
+	input[type="text"], 
+	input[type="password"], 
+	input[type="datetime"], 
+	input[type="datetime-local"], 
+	input[type="date"], 
+	input[type="month"], 
+	input[type="time"], 
+	input[type="week"], 
+	input[type="number"], 
+	input[type="email"], 
+	input[type="url"], 
+	input[type="search"], 
+	input[type="tel"], input[type="color"]{
+		padding-left: 13px !important;
+		padding-right: 13px !important;
+		height: 43px;
+		font-weight: 300;
+		font-size: 18px;
+	}	
+}
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  border: 1px solid white;
+  -webkit-text-fill-color:  $dark !important;
+  -webkit-box-shadow: 0 0 0px 1000px #fffde3 inset;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+.button{
+	border-bottom-right-radius: 5px !important;
+    border-bottom-left-radius: 5px  !important;
+    border-top-left-radius: 5px !important;
+    border-top-right-radius: 5px !important; 
+}
+
+.listBarraca{
+	margin: 24px 9px 15px 10px;
+    padding: 7px 17px;
+    border: none;
+    background-color: #e6e6e6;
+    .form-control{
+		width: 100%;
+		background-color: transparent;
+		font-size: 12px;
+		color: #b3b3b3;
+    }
+    .input-label{
+    	color: $positive;
+		text-transform: uppercase;
+		font-weight: 500;
+    	width: auto;
+    	font-size: 12px;
+    }
+}
+
+
