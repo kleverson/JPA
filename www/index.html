@@ -60,25 +60,65 @@
       </script>
   </head>
   <body ng-app="PortasAbertas">
-    <!--
-      The nav bar that will be updated as we navigate between views.
-    -->
     <ion-nav-bar class="bar bar-header bar-positive">
-      <ion-nav-back-button>
-      </ion-nav-back-button>
-
       <ion-nav-buttons side="right">
         <a href='#' ng-click='logout()' class='button button-icon icon ion-log-out btnLogoff'>Fazer Logoff</a>
       </ion-nav-buttons>
     </ion-nav-bar>
-    <!--
-      The views will be rendered in the <ion-nav-view> directive below
-      Templates are in the /templates folder (but you could also
-      have templates inline in this html file if you'd like).
-    -->
     <ion-nav-view>      
 
     </ion-nav-view>
+
+    <script id="associate.html" type="text/ng-template">
+      <ion-modal-view>
+        <ion-header-bar>
+          <h1 class="title text-center">Associar cartão</h1>
+          <a href="" class="button pull-right button-positive" ng-click="closeModal();"> Fechar </a>
+        </ion-header-bar>
+        <ion-content>
+          <form name="formAssociate" novalidate>
+            <div class="list">
+            
+              <label class="item item-input item-floating-label">
+                <input type="text" placeholder="Número do cartão" ng-model="cardNumber" readonly>
+           
+              </label>
+              <br>
+              
+              <label class="item item-input item-floating-label">
+                <span class="input-label">Nome* </span>
+                <input type="text" placeholder="Nome" ng-model="data.name" required>
+                </label>
+                <div class="padding">
+                  <p ng-show="formAssociate.username.$error.required">* Nome é obrigatório</p>
+                </div>
+               <br>
+
+              <label class="item item-input item-floating-label">
+                <span class="input-label">Sobrenome* </span>
+                <input type="text" placeholder="Sobrenome" ng-model="data.lastname" required>
+                </label>
+                <div class="padding">
+                  <p ng-show="formAssociate.lastname.$error.required">* Sobrenome é obrigatório</p>
+                </div>
+               <br>
+
+              <label class="item item-input item-floating-label">
+                <span class="input-label">Documento *</span>
+                <input type="text" placeholder="Documento" ng-model="data.document" required>
+              </label>
+              <div class="padding">
+                  <p ng-show="formAssociate.document.$error.required">* Documento é obrigatório</p>
+                </div>
+
+            </div>
+
+            <button class="button button-block button-positive" ng-disabled="formAssociate.$invalid" ng-click="associateCard();">Associar</button>
+          </form>
+
+        </ion-content>
+      </ion-modal-view>
+    </script>
 
   </body>
 </html>

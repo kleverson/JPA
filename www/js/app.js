@@ -4,7 +4,7 @@ var BASE_URL = "http://app.jpa.rmater.org.br";
 
 angular.module('PortasAbertas', ['ionic', 'portasabertas.controllers', 'portasabertas.services','ngCordova'])
 
-.run(function($ionicPlatform, $rootScope, $localstorage, $state) {
+.run(function($ionicPlatform, $rootScope, $localstorage, $state, $ionicNavBarDelegate) {
   $ionicPlatform.ready(function() {
 
     $rootScope.userData = {};
@@ -22,6 +22,13 @@ angular.module('PortasAbertas', ['ionic', 'portasabertas.controllers', 'portasab
       StatusBar.styleDefault();
     }
 
+    $ionicPlatform.registerBackButtonAction(function(event){
+      event.preventDefault();
+    }, 100);
+
+    // To Conditionally Disable Back
+    $ionicNavBarDelegate.showBackButton(false);
+
     function userdata(){
       $user = $localstorage.getObject('user');
       if(!angular.isUndefined($user.data)){
@@ -33,25 +40,27 @@ angular.module('PortasAbertas', ['ionic', 'portasabertas.controllers', 'portasab
 
     $rootScope.logout = function(){
       $localstorage.removeObject('user');
+      $localstorage.removeObject('stands');
+      $localstorage.removeObject('cart'); 
       $state.go('login');
     }
-      var permissions = cordova.plugins.permissions;
+    //   var permissions = cordova.plugins.permissions;
 
-       var listPermissions = [
-        permissions.WRITE_EXTERNAL_STORAGE,
-        permissions.READ_EXTERNAL_STORAGE,
-        permissions.CAMERA
-      ];
+    //    var listPermissions = [
+    //     permissions.WRITE_EXTERNAL_STORAGE,
+    //     permissions.READ_EXTERNAL_STORAGE,
+    //     permissions.CAMERA
+    //   ];
 
-      permissions.requestPermissions(listPermissions, success, error);
+    //   permissions.requestPermissions(listPermissions, success, error);
    
-      function error() {
-        alert('Camera permission is not turned on');
-      }
+    //   function error() {
+    //     alert('Camera permission is not turned on');
+    //   }
        
-      function success( status ) {
-        if( !status.hasPermission ) error();
-    }
+    //   function success( status ) {
+    //     if( !status.hasPermission ) error();
+    // }
 
     userdata();
 

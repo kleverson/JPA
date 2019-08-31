@@ -26,8 +26,6 @@ controllers.controller('ProductsCtrl', function($scope, $rootScope, $state, User
       $ionicLoading.hide();
    	};
 
-
-
 	$scope.getData = function(standId, name){
 		$scope.showLoading(name);
 
@@ -67,9 +65,17 @@ controllers.controller('ProductsCtrl', function($scope, $rootScope, $state, User
 
 	$scope.getStands = function(){
 		var stands = $localstorage.getObject('stands');
-			$scope.stands.values.push(stands);
-		
+		$scope.$emit('stands', stands);
 	}
+
+	$scope.getMultipleStand = function(){
+		var stands = $scope.user.data.stand;
+		$scope.$emit('stands', stands);
+	}
+
+	 $scope.$on('stands', function(event, data) {
+	  	$scope.stands.values.push(data);
+	 });
 
 	$scope.update = function(){
 		$scope.getData($scope.stands.selected.id_barraca,$scope.stands.selected.nome);
@@ -150,12 +156,16 @@ controllers.controller('ProductsCtrl', function($scope, $rootScope, $state, User
 
 	$scope.$on('$ionicView.beforeEnter', function()
 	{
+
 		$scope.user = $localstorage.getObject('user');
-		
 		if(parseInt($scope.user.data.profile) == 1){
 			$scope.getStands();
+		}else if($scope.user.data.stand.length > 1)
+		{
+			$scope.getMultipleStand();
 		}else{
-			$scope.getData($scope.user.data.stand.id_barraca, $scope.user.data.stand.nome);
+			$scope.getData($scope.user.data.stand[0].id_barraca, $scope.user.data.stand[0].nome);
 		}
+		
 	});
 })

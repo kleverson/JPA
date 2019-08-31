@@ -1,6 +1,17 @@
 services.factory('Card', function($http) {
 
 	return {
+		associate:function($token, obj){
+			return $http({
+				method:'post',
+				headers:{ 
+					"Content-Type":"application/json",
+					'Authorization':$token
+				},
+				url:BASE_URL+'/sales/associate',
+				data:obj
+			});
+		},
 		consult:function(cardId, $token)
 		{
 			return $http.get(BASE_URL + '/sales/consult/'+cardId,{

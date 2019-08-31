@@ -41,6 +41,7 @@ controllers.controller('CheckoutCtrl', function($scope, $rootScope, $state, $cor
   					Checkout.pay($user.data.token, $scope.cardNumber, cart).then(function(response){
   						if(!angular.isUndefined(response.data.status))
               {
+                $localstorage.removeObject('cart'); 
                 $state.go('response',{'status': response.data.status});
   						}
   					});
@@ -52,7 +53,7 @@ controllers.controller('CheckoutCtrl', function($scope, $rootScope, $state, $cor
 
   		var alertPopup = $ionicPopup.alert({
   			title: 'Pagamento',
-  			template: 'Não foi possível ler o código do cartão. Gosta'
+  			template: 'Não foi possível ler o código do cartão. Tentar novamente?'
   		});
 
   		alertPopup.then(function(res) {

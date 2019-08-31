@@ -23,8 +23,9 @@ controllers.controller('UserCtrl', function($scope, $state, $rootScope,  User, P
               $scope.getStands(response.data);
               
               $timeout(function(){
-                $ionicLoading.hide();
+                
                 $state.go('tab.products');
+                $ionicLoading.hide();
               },1000)
             }
           }
@@ -38,10 +39,10 @@ controllers.controller('UserCtrl', function($scope, $state, $rootScope,  User, P
     Product.getAll(user.data.token).then(function(response){
       if(!angular.isUndefined(response.data)){
         $localstorage.setObject('stands', response.data);
+        $scope.$broadcast('stands', response.data);
       }
     });
   }
-
 
  	$scope.$on('$ionicView.beforeEnter', function(){
 	  $user = $localstorage.getObject('user');

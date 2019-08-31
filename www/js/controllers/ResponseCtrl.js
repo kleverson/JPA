@@ -2,4 +2,6 @@ controllers.controller('ResponseCtrl', function($scope, $rootScope, $state, $sta
 
   $scope.response = ($stateParams.status == "true") ? true : false;
 
+  $localstorage.removeObject('cart'); 
+
 })
