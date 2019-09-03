@@ -1,7 +1,7 @@
 // Ionic Starter App
 
 var BASE_URL = "http://app.jpa.rmater.org.br";
-
+// var BASE_URL = "http://kcosta.cf";
 angular.module('PortasAbertas', ['ionic', 'portasabertas.controllers', 'portasabertas.services','ngCordova'])
 
 .run(function($ionicPlatform, $rootScope, $localstorage, $state, $ionicNavBarDelegate) {
@@ -44,23 +44,23 @@ angular.module('PortasAbertas', ['ionic', 'portasabertas.controllers', 'portasab
       $localstorage.removeObject('cart'); 
       $state.go('login');
     }
-    //   var permissions = cordova.plugins.permissions;
+      var permissions = cordova.plugins.permissions;
 
-    //    var listPermissions = [
-    //     permissions.WRITE_EXTERNAL_STORAGE,
-    //     permissions.READ_EXTERNAL_STORAGE,
-    //     permissions.CAMERA
-    //   ];
+       var listPermissions = [
+        permissions.WRITE_EXTERNAL_STORAGE,
+        permissions.READ_EXTERNAL_STORAGE,
+        permissions.CAMERA
+      ];
 
-    //   permissions.requestPermissions(listPermissions, success, error);
+      permissions.requestPermissions(listPermissions, success, error);
    
-    //   function error() {
-    //     alert('Camera permission is not turned on');
-    //   }
+      function error() {
+        alert('Camera permission is not turned on');
+      }
        
-    //   function success( status ) {
-    //     if( !status.hasPermission ) error();
-    // }
+      function success( status ) {
+        if( !status.hasPermission ) error();
+    }
 
     userdata();
 
@@ -111,7 +111,7 @@ angular.module('PortasAbertas', ['ionic', 'portasabertas.controllers', 'portasab
   })
 
   .state('response', {
-    url: '/response/:status',
+    url: '/response/:status/:balance',
     templateUrl: 'templates/response.html',
     controller: 'ResponseCtrl'
   })

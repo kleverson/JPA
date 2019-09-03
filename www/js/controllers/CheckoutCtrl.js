@@ -1,6 +1,7 @@
 controllers.controller('CheckoutCtrl', function($scope, $rootScope, $state, $cordovaBarcodeScanner, User, Card, Checkout, $ionicPopup, $ionicLoading, $localstorage) {
 
   $scope.cardNumber = {};
+  $rootScope.balance = '';
 
   $scope.scanBarcode = function() {
   	$cordovaBarcodeScanner.scan().then(function(imageData) {
@@ -42,7 +43,7 @@ controllers.controller('CheckoutCtrl', function($scope, $rootScope, $state, $cor
   						if(!angular.isUndefined(response.data.status))
               {
                 $localstorage.removeObject('cart'); 
-                $state.go('response',{'status': response.data.status});
+                $state.go('response',{'status': response.data.status,'balance':response.data.balance[0].creditos});
   						}
   					});
   				}
@@ -80,6 +81,7 @@ controllers.controller('CheckoutCtrl', function($scope, $rootScope, $state, $cor
   };
 
   $scope.$on('$ionicView.beforeEnter', function(e) {
+    $rootScope.balance = '';
   	$scope.scanBarcode();
   });
 

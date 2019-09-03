@@ -1,16 +1,18 @@
 <ion-view hide-nav-bar="true">
   
   <ion-content>
-	
 	<div class="success text-center" ng-if="response == true">
 		<br /><br />
 		<i class="ion-checkmark-circled colorBalance"></i>
 		<h2>Pagamento</h2>
 
 		<p>Pagamento feito com sucesso!</p>
+
+		<p>Saldo disponível: <strong>R$ {{balance}}</strong></p>
+
 		<br />
 
-		<a class="button button-balanced" href="#/tab/products">Outros Produtos</a>
+		<a class="button button-balanced" ng-click="backProducts();">Outros Produtos</a>
 	</div>
 
 
@@ -20,9 +22,11 @@
 
 		<h2>Pagamento</h2>
 		<p>Houve um erro, por favor tente novamente!</p>
+		<p>Saldo disponível: <strong>R$ {{balance}}</strong></p>
+
 		<br />
 		
-		<a class="button button-assertive" href="#/tab/products">Voltar aos Produtos</a>
+		<a class="button button-assertive" ng-click="backProducts();">Voltar aos Produtos</a>
 
 	</div>
 	

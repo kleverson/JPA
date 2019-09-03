@@ -156,6 +156,7 @@ controllers.controller('ProductsCtrl', function($scope, $rootScope, $state, User
 
 	$scope.$on('$ionicView.beforeEnter', function()
 	{
+		$scope.products = [];
 
 		$scope.user = $localstorage.getObject('user');
 		if(parseInt($scope.user.data.profile) == 1){
@@ -164,6 +165,7 @@ controllers.controller('ProductsCtrl', function($scope, $rootScope, $state, User
 		{
 			$scope.getMultipleStand();
 		}else{
+			console.log($scope.user);
 			$scope.getData($scope.user.data.stand[0].id_barraca, $scope.user.data.stand[0].nome);
 		}
 		
